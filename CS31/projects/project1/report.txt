@@ -1,0 +1,50 @@
+# CS31 Project 1 - Report
+
+## Overview
+This project involves understanding the provided C++ program and exploring different types of programming errors.
+
+## Files Created
+
+### 1. original.cpp (Step 2)
+The original program that calculates and displays weather statistics.
+- **Input:** Total days reviewed, rainy days, cold days (below 50°F)
+- **Output:** Percentage of rainy and cold days with comparison
+- **Testing:** Tested with various reasonable inputs to verify correct behavior
+
+### 2. logic_error.cpp (Step 6)
+A version with a logical error that compiles successfully but produces incorrect results.
+- **Error Type:** Logic error in percentage calculation
+- **Line with Error:** Line 22-23
+- **Details:** Uses `100.0 + daysWithRain / daysReviewed` instead of `100.0 * daysWithRain / daysReviewed`
+- **Result:** Produces percentages around 100% instead of correct values
+- **Example:** Input: 30, 12, 8
+  - Expected: 40.00%, 26.67%
+  - Actual: 100.40%, 100.27%
+
+### 3. compile_error.cpp (Step 7)
+A version with two distinct compilation errors.
+- **Error #1 (Line 27):** Missing semicolon at end of cout statement
+  - `cout << pctRainy << "% were rainy."` (missing semicolon)
+- **Error #2 (Line 39):** Undefined identifier
+  - `undefined_variable` used without declaration
+  
+## Test Cases
+
+### Original Program - Normal Inputs
+- Input: 30 rainy days, 12 cold days out of 100 total
+- Result: Displays correct percentages and comparison
+
+### Original Program - Edge Cases
+- All days rainy/cold
+- No rainy/cold days
+- Negative inputs (caught by validation)
+- Invalid data (rainy + cold > total)
+
+### Logic Error Program
+- Same inputs produce incorrect percentage values (all near 100%)
+- Still compiles and runs without crashing
+- Logical validation code still works
+
+### Compile Error Program
+- Does not compile
+- Two distinct error types that prevent successful build

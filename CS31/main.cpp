@@ -1,14 +1,18 @@
-//
-//  main.cpp
-//  CS31
-//
-//  Created by bryan on 1/8/26.
-//
-
 #include <iostream>
+using namespace std;
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return EXIT_SUCCESS;
+int main()
+{
+        int i, j, k;
+        cout << "Enter:";
+        cin >> i >> j >> k;
+        cout << "Your value of i was:";
+        cout << i << endl;
+        cout << "Your value of j was:";
+        cout << j << endl;
+        cout << "Your value of k was:";
+        cout << k << endl;
+        cout << endl;
+
+  return (0);
 }
