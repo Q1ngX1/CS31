@@ -1,5 +1,5 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     '/Users/bryan/Code/CS31/CS31/main'
+binary-path:     '/Users/bryan/Code/CS31/main'
 relocations:     []
 ...
