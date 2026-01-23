@@ -1,0 +1,84 @@
+Name: Bryan Zan
+UID: 206712318
+
+Some Obstacels
+Initially, I struggled with implementing the correct logic for charging different rates based on usage tiers. I was confused by whether it should be accumulative or calculated separatly.
+Also, I spend most of my time ensuring that error messages are generated in the correct order (name, then power, then type) while not processing remaining input after an error is detected.
+
+
+TEST DATA FOR COMPREHENSIVE TESTING:
+1. Valid Residential Customer (Low Usage - Tier 1 only)
+   Input: Howard Stahl, 5 kW, Residential
+   Expected: The bill for Howard Stahl is $38.45
+   Reason: Tests first tier rate calculation for residential (0-10 kW at $4.50/kW)
+2. Valid Residential Customer (Tier 1 and 2)
+   Input: Howard Stahl, 13.5 kW, Residential
+   Expected: The bill for Howard Stahl is $91.45
+   Reason: Tests multiple tier calculations (10 kW at $4.50 + 3.5 kW at $9.00)
+3. Valid Residential Customer (All Three Tiers)
+   Input: Test Customer, 25 kW, Residential
+   Expected: The bill for Test Customer is $274.95
+   Reason: Tests all three tiers (10 kW at $4.50 + 10 kW at $9.00 + 5 kW at $15.00)
+4. Valid Business Customer (Low Usage - Tier 1 only)
+   Input: Business ABC, 8 kW, Business
+   Expected: The bill for Business ABC is $79.95
+   Reason: Tests first tier rate for business (0-10 kW at $7.50/kW)
+5. Valid Business Customer (Tier 1 and 2)
+   Input: Dee Dee Reese Cookies, 13.5 kW, Business
+   Expected: The bill for Dee Dee Reese Cookies is $147.45
+   Reason: Tests multiple tier calculations for business (10 kW at $7.50 + 3.5 kW at $15.00)
+6. Valid Business Customer (All Three Tiers)
+   Input: Large Corporation, 30 kW, Business
+   Expected: The bill for Large Corporation is $369.95
+   Reason: Tests all three tiers (10 kW at $7.50 + 10 kW at $15.00 + 10 kW at $20.00)
+7. Zero Power Usage (Residential)
+   Input: Test User, 0 kW, Residential
+   Expected: The bill for Test User is $14.95
+   Reason: Tests edge case of zero usage (only service charge)
+8. Zero Power Usage (Business)
+   Input: Test User, 0 kW, Business
+   Expected: The bill for Test User is $19.95
+   Reason: Tests edge case of zero usage for business (only service charge)
+9. Exactly 10 kW (Tier 1 boundary)
+   Input: Customer, 10 kW, Residential
+   Expected: The bill for Customer is $59.95
+   Reason: Tests exact boundary between tier 1 and tier 2
+10. Exactly 20 kW (Tier 2 boundary)
+    Input: Customer, 20 kW, Residential
+    Expected: The bill for Customer is $224.95
+    Reason: Tests exact boundary between tier 2 and tier 3
+11. Negative Power Usage
+    Input: Test User, -5 kW, Residential
+    Expected: The power usage reading must be nonnegative.
+    Reason: Tests error checking for negative power usage
+12. Empty Customer Name
+    Input: [empty string], 10 kW, Residential
+    Expected: You must enter a customer name.
+    Reason: Tests error checking for empty customer name
+13. Invalid Customer Type (lowercase)
+    Input: Test User, 10 kW, residential
+    Expected: The customer type is not valid.
+    Reason: Tests that customer type is case-sensitive
+14. Invalid Customer Type (misspelled)
+    Input: Test User, 10 kW, Residential2
+    Expected: The customer type is not valid.
+    Reason: Tests invalid customer type detection
+15. Large Power Usage (Residential)
+    Input: Big User, 100 kW, Residential
+    Expected: The bill for Big User is $1424.95
+    Reason: Tests high usage with all three tiers
+16. Large Power Usage (Business)
+    Input: Big Business, 100 kW, Business
+    Expected: The bill for Big Business is $1969.95
+    Reason: Tests high usage with all three tiers for business
+17. Customer Name with Special Characters
+    Input: O'Brien & Associates, 15 kW, Business
+    Expected: The bill for O'Brien & Associates is $159.45
+    Reason: Tests handling of apostrophes and ampersands in names
+18. Very Long Customer Name
+    Input: [Long name with multiple words], 10 kW, Residential
+    Expected: The bill for [name] is $59.95
+    Reason: Tests handling of long customer names with multiple words
+
+Limitations:
+All test cases listed above are expected to be handled correctly by the program.
