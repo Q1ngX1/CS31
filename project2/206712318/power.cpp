@@ -29,7 +29,7 @@ int main()
     }
     else if (PowerUsed < 0)
     {
-        cout << "The power usage must be nonnegative." << endl;
+        cout << "The power usage reading must be nonnegative." << endl;
     }
     else if (CustomerType != "Residential" && CustomerType != "Business")
     {

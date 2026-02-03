@@ -1,0 +1,78 @@
+Name: Bryan Zan
+UID: 206712318
+
+Some Obstacels
+Initially, I struggled with implementing the correct logic for charging different rates based on usage tiers. I was confused by whether it should be accumulative or calculated separatly.
+Also, I spend most of my time ensuring that error messages are generated in the correct order (name, then power, then type) while not processing remaining input after an error is detected.
+
+Test data (valid):
+1. Residential (T1 only):
+   Input: bryan z, 5, Residential
+   Output: The bill for bryan zqwerty is $38.45
+2. Residential (T1 and T2):
+   Input: qwerty, 13.5, Residential
+   output: The bill for qwerty is $91.45
+3. Residential Customer (T1+T2+T3):
+   Input: test, 25, Residential
+   Ouput: The bill for test is $274.95
+4. Business Customer (T1 only):
+   Input: ABC, 8, Business
+   Output: The bill for ABC is $79.95
+5. Business Customer (T1 and T2):
+   Input: 1, 13.5, Business
+   Output: The bill for 1 is $147.45
+6. Business Customer (T1+T2+T3):
+   Input: APPPPPPPPPPPPPPPPPPPLE, 30, Business
+   Output: The bill for APPPPPPPPPPPPPPPPPPPLE is $369.95
+
+Test data (invalid and error input):
+7. Zero Power Usage (Residential)
+   Input: zero, 0, Residential
+   Output: The bill for zero is $14.95
+   Reason: Tests edge case of zero usage (only service charge)
+8. Zero Power Usage (Business)
+   Input: APPPPPPPPPPPPPPPPPPPLE, 0, Business
+   Output: The bill for APPPPPPPPPPPPPPPPPPPLE is $19.95
+   Reason: Tests edge case of zero usage for business (only service charge)
+9. Exactly 10kW (T1 boundary)
+   Input: test, 10, Residential
+   Output: The bill for test is $59.95
+   Reason: Tests exact boundary between T1 and T2
+10. Exactly 20kW (T2 boundary)
+    Input: test, 20, Residential
+    Output: The bill for test is $224.95
+    Reason: Tests exact boundary between T2 and T3
+11. Negative Power Usage
+    Input: test, -5, Residential
+    Output: The power usage reading must be nonnegative.
+    Reason: Tests error checking for negative power usage
+12. Empty Customer Name
+    Input: "empty", 10, Residential
+    Output: You must enter a customer name.
+    Reason: Tests error checking for empty customer name
+13. Invalid Customer Type (lowercase)
+    Input: test, 10, residential
+    Output: The customer type is not valid.
+    Reason: Tests that customer type is case-sensitive
+14. Invalid Customer Type (misspelled)
+    Input: test, 10, aaa
+    Output: The customer type is not valid.
+    Reason: Tests invalid customer type detection
+15. Large Power Usage (Residential)
+    Input: Big User, 100, Residential
+    Output: The bill for Big User is $1424.95
+    Reason: Tests high usage with all three tiers
+16. Large Power Usage (Business)
+    Input: aa, 100, Business
+    Output: The bill for aa is $1969.95
+    Reason: Tests high usage with all three tiers for business
+17. Name with Special Characters
+    Input: 我要打瓦！@#￥%……&*（）——+{}|, 15, Business
+    Output: The bill for 我要打瓦！@#￥%……&*（）——+{}| is $159.45
+    Reason: Tests handling of apostrophes and ampersands in names
+18. Very Long Customer Name
+    Input: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, 10, Residential
+    Output: The bill for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa is $59.95
+    Reason: Tests handling of long customer names with multiple words (more than one line)
+
+All test cases listed above are expected to be handled correctly by the program.
